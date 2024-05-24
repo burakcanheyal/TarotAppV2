@@ -1,0 +1,54 @@
+﻿@model ReadingModel
+@*Generated from Custom Template.*@
+@*Model namespace using directive should be added to _ViewImports.cshtml.*@
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div>
+    <h4>Fal</h4>
+    <hr />
+        <dl class="row">
+            <dt class="col-2">
+                @Html.DisplayNameFor(model => model.Explanation)
+            </dt>
+            <dd class="col-10">
+                @Html.DisplayFor(model => model.Explanation)
+            </dd>
+        </dl>
+    <dl class="row">
+        <dt class="col-2">
+            @Html.DisplayNameFor(model => model.TarotCards)
+        </dt>
+        <dd class="col-10">
+            @Html.DisplayFor(model => model.TarotCards)
+        </dd>
+    </dl>
+    <dl class="row">
+        <dt class="col-2">
+            @Html.DisplayNameFor(model => model.TotalSalesPriceOutput)
+        </dt>
+        <dd class="col-10">
+            @Html.DisplayFor(model => model.TotalSalesPriceOutput)
+        </dd>
+    </dl>
+    <dl class="row">
+        <dt class="col-2">
+            @Html.DisplayNameFor(model => model.CreatedAtOutput)
+        </dt>
+        <dd class="col-10">
+            @Html.DisplayFor(model => model.CreatedAtOutput)
+        </dd>
+    </dl>
+        
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a>&nbsp;|&nbsp;
+    <a asp-action="Index">Back to List</a>
+</div>
+
+
+

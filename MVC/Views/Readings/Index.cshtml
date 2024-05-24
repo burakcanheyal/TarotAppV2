@@ -1,0 +1,91 @@
+﻿@model IEnumerable<ReadingModel>
+
+@{
+    ViewData["Title"] = "Tarot Falın";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+@if (TempData["Message"] is not null)
+{
+    <p class="text-success">@TempData["Message"]</p>
+}
+
+@{
+    var count = Model is null ? 0 : Model.Count();
+}
+
+@if (count > 0)
+{
+    <p class="text-info">@count Fal(s) found.</p>
+    <table id="datatable" class="display" style="width:100%;">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Explanation)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TotalSalesPriceOutput)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreatedAtOutput)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TarotCards)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Explanation)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TotalSalesPriceOutput)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedAtOutput)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TarotCards)
+                    </td>
+                    <td class="text-end">
+                        @if (User.IsInRole("admin"))
+                        {
+                            <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        }
+                        @if (User.IsInRole("readr"))
+                        {
+                            <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                        }
+                        @if (User.IsInRole("user"))
+                        {
+                            <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p class="text-info">No Fal found.</p>
+}
+
